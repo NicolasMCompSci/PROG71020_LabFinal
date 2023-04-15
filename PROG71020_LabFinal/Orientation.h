@@ -6,8 +6,8 @@
 #define ORIENTATION_MIN -1
 #define ORIENTATION_MAX 1
 
-enum Label { FaceUp, FaceDown, Portrait, PortraitUpsideDown, LandscapeLeft, 
-            LandscapeRight, FIRST = FaceUp, LAST = LandscapeRight, INVALID };
+enum Label { INVALID, FaceUp, FaceDown, Portrait, PortraitUpsideDown, LandscapeLeft, 
+            LandscapeRight, FIRST = FaceUp, LAST = LandscapeRight };
 
 class Orientation
 {

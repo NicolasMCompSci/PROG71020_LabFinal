@@ -12,18 +12,23 @@ void NNClassifier::train(std::string filename)
     std::string line;
     std::string param;
     if (fin.is_open()) {
-        int i = 0;
         while (std::getline(fin, line)) {
+            Orientation trainingOrientation;
             std::istringstream lineAsStream(line);
+
             std::getline(lineAsStream, param, ',');
-            this->trained[i].setX(atof(param.c_str()));
+            trainingOrientation.setX(atof(param.c_str()));
+
             std::getline(lineAsStream, param, ',');
-            this->trained[i].setY(atof(param.c_str()));
+            trainingOrientation.setY(atof(param.c_str()));
+
             std::getline(lineAsStream, param, ',');
-            this->trained[i].setZ(atof(param.c_str()));
+            trainingOrientation.setZ(atof(param.c_str()));
+
             std::getline(lineAsStream, param, ',');
-            this->trained[i].setLabel(atoi(param.c_str()));
-            i++;
+            trainingOrientation.setLabel(atoi(param.c_str()));
+
+            this->trained.push_back(trainingOrientation);
         }
 
         fin.close();
@@ -38,16 +43,20 @@ void NNClassifier::readWorkingFile(std::string filename)
     std::string line;
     std::string param;
     if (fin.is_open()) {
-        int i = 0;
         while (std::getline(fin, line)) {
+            Orientation workingOrientation;
             std::istringstream lineAsStream(line);
+
             std::getline(lineAsStream, param, ',');
-            this->working[i].setX(atof(param.c_str()));
+            workingOrientation.setX(atof(param.c_str()));
+
             std::getline(lineAsStream, param, ',');
-            this->working[i].setY(atof(param.c_str()));
+            workingOrientation.setY(atof(param.c_str()));
+
             std::getline(lineAsStream, param, ',');
-            this->working[i].setZ(atof(param.c_str()));
-            i++;
+            workingOrientation.setZ(atof(param.c_str()));
+
+            this->working.push_back(workingOrientation);
         }
 
         fin.close();

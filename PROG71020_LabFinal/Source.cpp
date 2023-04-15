@@ -34,12 +34,14 @@ int main(void) {
             dummy.warning();
             dummy.train("dummy filename");
             dummy.predict("dummy filename");
+            dummy.readWorkingFile("dummy filename");
             break; }
         case 2: {
             KNNClassifier knn;
             knn.warning();
             knn.train("dummy filename");
             knn.predict("dummy filename");
+            knn.readWorkingFile("dummy filename");
             break; }
         case 3: {
             NNClassifier nnClassifier;
@@ -82,6 +84,8 @@ int main(void) {
             std::cout << "Invalid input." << std::endl;
             break;
         }
+
+        std::cout << std::endl;
     }
 
 	return 0;

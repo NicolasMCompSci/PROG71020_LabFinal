@@ -127,12 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DummyClassifier.cpp" />
+    <ClCompile Include="KNNClassifier.cpp" />
+    <ClCompile Include="NNClassifier.cpp" />
     <ClCompile Include="Orientation.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DummyClassifier.h" />
+    <ClInclude Include="KNNClassifier.h" />
     <ClInclude Include="NNClassifier.h" />
     <ClInclude Include="Orientation.h" />
+    <ClInclude Include="Trainer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -80,12 +80,19 @@ void Orientation::translateOrientationFromLabel()
 {
 	switch (this->label) {
 	case FaceUp: this->orientation = "Face Up";
+		break;
 	case FaceDown: this->orientation = "Face Down";
+		break;
 	case Portrait: this->orientation = "Portrait";
+		break;
 	case PortraitUpsideDown: this->orientation = "Portrait Upside Down";
+		break;
 	case LandscapeLeft: this->orientation = "Landscape Left";
+		break;
 	case LandscapeRight: this->orientation = "Landscape Right";
-	default:;
+		break;
+	default:
+		break;;
 	}
 }
 
