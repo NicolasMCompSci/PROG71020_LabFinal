@@ -73,6 +73,34 @@ void Orientation::translateNameFromLabel()
 	}
 }
 
+Orientation Orientation::inputCoordinates()
+{
+	double coordinateInput;
+
+	std::cout << "Input X coordinate (between -1, and 1): ";
+	std::cin >> coordinateInput;
+	this->setX(coordinateInput);
+
+	std::cout << "Input Y coordinate (between -1, and 1): ";
+	std::cin >> coordinateInput;
+	this->setY(coordinateInput);
+
+	std::cout << "Input Z coordinate (between -1, and 1): ";
+	std::cin >> coordinateInput;
+	this->setZ(coordinateInput);
+
+	return *this;
+}
+
+double Orientation::getDistanceFrom(Orientation rhs)
+{
+	double distanceX = this->getX() - rhs.getX();
+	double distanceY = this->getY() - rhs.getY();
+	double distanceZ = this->getZ() - rhs.getZ();
+	double distanceFromLhsToRhs = sqrt((pow(distanceX, 2) + pow(distanceY, 2) + pow(distanceZ, 2)));
+	return distanceFromLhsToRhs;
+}
+
 std::ostream& operator<<(std::ostream& cout, Orientation classifier)
 {
 	cout << classifier.getX() << "," << classifier.getY() << "," << classifier.getZ() << "," <<

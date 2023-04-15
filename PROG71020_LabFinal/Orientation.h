@@ -32,6 +32,9 @@ public:
     std::string getLabelName();
     void translateNameFromLabel();
 
+    Orientation inputCoordinates();
+
+    double getDistanceFrom(Orientation rhs);
 };
 
 std::ostream& operator<<(std::ostream& cout, Orientation classifier);

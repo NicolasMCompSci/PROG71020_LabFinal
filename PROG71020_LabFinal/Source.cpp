@@ -42,8 +42,8 @@ int main(void) {
             knn.predict("dummy filename");
             break; }
         case 3: {
-            NNClassifier phone;
-            phone.train(TRAININGDATA_FILENAME);
+            NNClassifier nnClassifier;
+            nnClassifier.train(TRAININGDATA_FILENAME);
 
             std::cout << std::endl << "1. Enter single sample data (x,y,z)" << std::endl
                 << "2. Enter file by name" << std::endl
@@ -51,10 +51,23 @@ int main(void) {
 
             std::cin >> menuInput;
             switch (menuInput) {
-            case 1:
-                break;
-            case 2:
-                break;
+            case 1: {
+                Orientation inputOrientation;
+                inputOrientation.inputCoordinates();
+
+                nnClassifier.predict(inputOrientation);
+
+                std::cout << inputOrientation << std::endl;
+
+                break; }
+            case 2: {
+                std::cout << "Input filename to be read: " << std::endl;
+                std::string filename;
+                std::cin >> filename;
+
+                nnClassifier.predict(filename);
+
+                break; }
             case 0:
                 break;
             default:
