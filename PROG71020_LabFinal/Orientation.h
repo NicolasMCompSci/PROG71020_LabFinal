@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-enum Label { FaceUp, FaceDown, Portrait, PortraitUpsideDown, LandscapeLeft, LandscapeRight, LAST = LandscapeRight };
+enum Label { FaceUp, FaceDown, Portrait, PortraitUpsideDown, LandscapeLeft, LandscapeRight, LAST = LandscapeRight, INVALID };
 
 class Orientation
 {
@@ -17,16 +17,21 @@ public:
 	~Orientation();
 
     double getX();
-    bool setX(double newX);
+    void setX(double newX);
 
     double getY();
-    bool setY(double newY);
+    void setY(double newY);
 
     double getZ();
-    bool setZ(double newZ);
+    void setZ(double newZ);
 
     Label getLabel();
-    bool setLabel(Label newLabel);
-    bool setLabel(int newLabel);
+    void setLabel(Label newLabel);
+    void setLabel(int newLabel);
+
+    std::string getLabelName();
+    void translateNameFromLabel();
 
 };
+
+std::ostream& operator<<(std::ostream& cout, Orientation classifier);
