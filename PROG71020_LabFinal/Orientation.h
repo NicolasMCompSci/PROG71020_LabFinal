@@ -1,9 +1,13 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 
+#define ORIENTATION_MIN -1
+#define ORIENTATION_MAX 1
 
-enum Label { FaceUp, FaceDown, Portrait, PortraitUpsideDown, LandscapeLeft, LandscapeRight, LAST = LandscapeRight, INVALID };
+enum Label { FaceUp, FaceDown, Portrait, PortraitUpsideDown, LandscapeLeft, 
+            LandscapeRight, FIRST = FaceUp, LAST = LandscapeRight, INVALID };
 
 class Orientation
 {
@@ -11,30 +15,30 @@ class Orientation
 	double y;
 	double z;
 	Label label;
-    std::string labelName;
+    std::string orientation;
 public:
 	Orientation();
-	~Orientation();
 
     double getX();
-    void setX(double newX);
+    bool setX(double newX);
 
     double getY();
-    void setY(double newY);
+    bool setY(double newY);
 
     double getZ();
-    void setZ(double newZ);
+    bool setZ(double newZ);
 
     Label getLabel();
-    void setLabel(Label newLabel);
-    void setLabel(int newLabel);
+    bool setLabel(Label newLabel);
+    bool setLabel(int newLabel);
 
     std::string getLabelName();
-    void translateNameFromLabel();
+    void translateOrientationFromLabel();
 
     Orientation inputCoordinates();
 
     double getDistanceFrom(Orientation rhs);
 };
 
-std::ostream& operator<<(std::ostream& cout, Orientation classifier);
+std::ostream& operator<<(std::ostream& cout, Orientation &orientation);
+std::ofstream& operator<<(std::ofstream& fout, Orientation &orientation);

@@ -61,6 +61,12 @@ void NNClassifier::predict(std::string filename)
     for (int i = 0; i < this->working.size(); i++)
         this->predict(this->working[i]);
 
+    std::ofstream fout;
+    fout.open(SAVE_FILENAME);
+    for (int i = 0; i < this->working.size(); i++)
+        fout << this->working[i];
+    fout.close();
+
 	std::cout << "your results have been saved to " << SAVE_FILENAME << std::endl;
 }
 

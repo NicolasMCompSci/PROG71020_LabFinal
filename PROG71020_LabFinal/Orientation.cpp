@@ -2,73 +2,89 @@
 
 Orientation::Orientation()
 {
-	this->x = 0;
-	this->y = 0;
-	this->z = 0;
+	this->x = -2;
+	this->y = -2;
+	this->z = -2;
 	this->label = INVALID;
-	this->labelName = "Invalid";
-}
-
-Orientation::~Orientation()
-{
+	this->orientation = "Invalid";
 }
 
 double Orientation::getX()
 {
-	return 0.0;
+	return this->x;
 }
 
-void Orientation::setX(double newX)
+bool Orientation::setX(double newX)
 {
+	if (newX > ORIENTATION_MAX || newX < ORIENTATION_MIN)
+		return false;
+	this->x = newX;
+	return true;
 }
 
 double Orientation::getY()
 {
-	return 0.0;
+	return this->y;
 }
 
-void Orientation::setY(double newY)
+bool Orientation::setY(double newY)
 {
+	if (newY > ORIENTATION_MAX || newY < ORIENTATION_MIN)
+		return false;
+	this->y = newY;
+	return true;
 }
 
 double Orientation::getZ()
 {
-	return 0.0;
+	return this->z;
 }
 
-void Orientation::setZ(double newZ)
+bool Orientation::setZ(double newZ)
 {
+	if (newZ > ORIENTATION_MAX || newZ < ORIENTATION_MIN)
+		return false;
+	this->z = newZ;
+	return true;
 }
 
 Label Orientation::getLabel()
 {
-	return Label();
+	return this->label;
 }
 
-void Orientation::setLabel(Label newLabel)
+bool Orientation::setLabel(Label newLabel)
 {
-	this->translateNameFromLabel();
+	if (newLabel > LAST || newLabel < FIRST)
+		return false;
+	this->label = newLabel;
+	this->translateOrientationFromLabel();
+	return true;
 }
 
-void Orientation::setLabel(int newLabel)
+bool Orientation::setLabel(int newLabel)
 {
-	this->translateNameFromLabel();
+	if (newLabel > LAST || newLabel < FIRST)
+		return false;
+	this->label = static_cast<Label>(newLabel);
+	this->translateOrientationFromLabel();
+	return true;
 }
 
 std::string Orientation::getLabelName()
 {
-	return this->labelName;
+	return this->orientation;
 }
 
-void Orientation::translateNameFromLabel()
+void Orientation::translateOrientationFromLabel()
 {
 	switch (this->label) {
-	case FaceUp: this->labelName = "Face Up";
-	case FaceDown: this->labelName = "Face Down";
-	case Portrait: this->labelName = "Portrait";
-	case PortraitUpsideDown: this->labelName = "Portrait Upside Down";
-	case LandscapeLeft: this->labelName = "Landscape Left";
-	case LandscapeRight: this->labelName = "Landscape Right";
+	case FaceUp: this->orientation = "Face Up";
+	case FaceDown: this->orientation = "Face Down";
+	case Portrait: this->orientation = "Portrait";
+	case PortraitUpsideDown: this->orientation = "Portrait Upside Down";
+	case LandscapeLeft: this->orientation = "Landscape Left";
+	case LandscapeRight: this->orientation = "Landscape Right";
 	default:;
 	}
 }
@@ -76,18 +92,36 @@ void Orientation::translateNameFromLabel()
 Orientation Orientation::inputCoordinates()
 {
 	double coordinateInput;
+	bool badInput = true;
 
-	std::cout << "Input X coordinate (between -1, and 1): ";
-	std::cin >> coordinateInput;
-	this->setX(coordinateInput);
+	while (badInput) {
+		std::cout << "Input X coordinate (between -1, and 1): ";
+		std::cin >> coordinateInput;
+		if (this->setX(coordinateInput))
+			badInput = false;
+		else
+			std::cout << "Invalid input, try again." << std::endl;
+	}
+	badInput = true;
 
-	std::cout << "Input Y coordinate (between -1, and 1): ";
-	std::cin >> coordinateInput;
-	this->setY(coordinateInput);
+	while (badInput) {
+		std::cout << "Input Y coordinate (between -1, and 1): ";
+		std::cin >> coordinateInput;
+		if (this->setY(coordinateInput))
+			badInput = false;
+		else
+			std::cout << "Invalid input, try again." << std::endl;
+	}
+	badInput = true;
 
-	std::cout << "Input Z coordinate (between -1, and 1): ";
-	std::cin >> coordinateInput;
-	this->setZ(coordinateInput);
+	while (badInput) {
+		std::cout << "Input Z coordinate (between -1, and 1): ";
+		std::cin >> coordinateInput;
+		if (this->setZ(coordinateInput))
+			badInput = false;
+		else
+			std::cout << "Invalid input, try again." << std::endl;
+	}
 
 	return *this;
 }
@@ -101,9 +135,16 @@ double Orientation::getDistanceFrom(Orientation rhs)
 	return distanceFromLhsToRhs;
 }
 
-std::ostream& operator<<(std::ostream& cout, Orientation classifier)
+std::ostream& operator<<(std::ostream& cout, Orientation& orientation)
 {
-	cout << classifier.getX() << "," << classifier.getY() << "," << classifier.getZ() << "," <<
-		classifier.getLabel() << "," << classifier.getLabelName() << std::endl;
+	cout << orientation.getX() << "," << orientation.getY() << "," << orientation.getZ() << ","
+		<< orientation.getLabel() << "," << orientation.getLabelName() << std::endl;
 	return cout;
+}
+
+std::ofstream& operator<<(std::ofstream& fout, Orientation& orientation)
+{
+	fout << orientation.getX() << "," << orientation.getY() << "," << orientation.getZ() << ","
+		<< orientation.getLabel() << "," << orientation.getLabelName() << std::endl;
+	return fout;
 }
