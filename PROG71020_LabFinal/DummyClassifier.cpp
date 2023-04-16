@@ -1,3 +1,12 @@
+/// @file DummyClassifier.h
+/// @brief Implementation for DummyClassifier class
+/// 
+/// As the class in not yet implemented, methods
+/// comprise of simple text displaying
+///
+/// @author Nicolas Masquieto
+/// @date 2023-04-15
+
 #include "DummyClassifier.h"
 
 

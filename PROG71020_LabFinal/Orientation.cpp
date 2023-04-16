@@ -1,3 +1,10 @@
+/// @file Orientation.cpp
+/// @brief Implementation for Orientation class
+/// and auxiliary operator overload
+///
+/// @author Nicolas Masquieto
+/// @date 2023-04-15
+
 #include "Orientation.h"
 
 Orientation::Orientation()

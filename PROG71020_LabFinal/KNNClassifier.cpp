@@ -1,3 +1,12 @@
+/// @file KNNClassifier.cpp
+/// @brief Implementation for KNNClassifier class
+/// 
+/// As the class in not yet implemented, methods
+/// comprise of simple text displaying
+///
+/// @author Nicolas Masquieto
+/// @date 2023-04-15
+
 #include "KNNClassifier.h"
 
 void KNNClassifier::train(std::string filename)

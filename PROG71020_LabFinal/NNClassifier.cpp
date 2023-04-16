@@ -1,3 +1,9 @@
+/// @file NNClassifier.cpp
+/// @brief Implementation for NNClassifier class
+///
+/// @author Nicolas Masquieto
+/// @date 2023-04-15
+
 #include "NNClassifier.h"
 #include <fstream>
 #include <sstream>
